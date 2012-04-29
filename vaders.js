@@ -133,10 +133,10 @@ function drawFrame() {
 			}
 			putImage(vs[q].y, vs[q].x, vad$);
 			if (vs[q].x - 1 >= x - 1 && vs[q].x + 3 <= x + 3) {
-				m = -1
+				m = -1;
 				for (var qq = 0; q <= 2; q++) {
 					if (vm[qq].x == 0) {
-						mm = qq
+						m = qq;
 					}
 				}
 				if (m >= 0) {
@@ -144,7 +144,7 @@ function drawFrame() {
 					vm[m].y = vs[q].y + 2;
 				}
 			}
-			for (qq = 0; q < maxMissiles; q++) {
+			for (qq = 0; qq < maxMissiles; qq++) {
 				if (ym[qq].y == vs[q].y && ym[qq].x >= vs[q].x && ym[qq].x <= vs[q].x + 2) {
 					clearAt(vs[q].y, vs[q].x, 3);
 					vs[q].x = 0;
@@ -171,13 +171,13 @@ function drawFrame() {
 	for (q = 0; q < maxMissiles; q++) {
 		if (vm[q].x > 0) {
 			vm[q].y += 1;
-			putImage(vm[q].y - 1, vm[q].x, f$);
+			clearAt(vm[q].y - 1, vm[q].x, 1);
 			putImage(vm[q].y, vm[q].x, vm$);
 			if (vm[q].y == 25 && vm[q].x >= x && vm[q].x <= x + 2) {
 				lives -= 1;
 			}
 			if (vm[q].y > 24) {
-				putImage(25, vm[q].x, f$);
+				clearAt(25, vm[q].x, 1);
 				vm[q].x = 0;
 			}
 		}
