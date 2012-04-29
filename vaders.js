@@ -93,14 +93,12 @@ function drawFrame() {
 	}
 	if (state.space) {
 		// Check for available missiles to fire
-		console.log('fire?');
 		var m = -1;
 		for (q = 0; q < maxMissiles; q++) {
 			if (ym[q].x == 0) {
 				m = q;
 			}
 		}
-		console.log('fire! ' + m);
 		if (m >= 0) {
 			ym[m].x = x + 1;
 			ym[m].y = 25;
@@ -158,13 +156,14 @@ function drawFrame() {
 	}
 	putImage(25, x, you$);
 	for (q = 0; q < maxMissiles; q++) {
-		if (ym[q.x] > 0) {
+		if (ym[q].x > 0) {
 			ym[q].y -= 1;
 			if (ym[q].y < 24) {
-				putImage(ym[q].y + 1, ym[q].x, f$);
+				clearAt(ym[q].y + 1, ym[q].x, 1);
 			}
 			putImage(ym[q].y, ym[q].x, ym$);
 			if (ym[q].y == 1) {
+				clearAt(1, ym[q].x, 1);
 				ym[q].x = 0;
 			}
 		}
