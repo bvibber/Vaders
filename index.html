@@ -2,17 +2,37 @@
 <html>
 	<head>
 		<title>'Vaders</title>
+		<link rel=stylesheet href=game.css type="text/css">
 	</head>
 	<body>
-		<div id=game-status></div>
-		<canvas id=game-canvas width=640 height=400>Game requires canvas support</canvas>
+		<div id=column>
+			<h1>'Vaders</h1>
 
-		<div id=assets>
-			<img src="images/you.png" id=img-you>
-			<img src="images/vad.png" id=img-vad>
-			<img src="images/ym.png" id=img-ym>
-			<img src="images/vm.png" id=img-vm>
+			<div id=game>
+				<div id=game-status></div>
+				<canvas id=game-canvas width=640 height=400>Game requires canvas support</canvas>
+			</div>
+	
+			<div id=info>
+				<p>Copyright 1991-2012 Brion Vibber.</p>
+				
+				<p>One of my old DOS projects, a little text mode-based
+				<a href="https://en.wikipedia.org/wiki/Space_Invaders">Space Invaders</a>
+				clone written in QuickBASIC. Reload page to restart game.</p>
+
+				<ul>
+					<li><a href="vaders.bas">1991 QuickBASIC source</a>
+					<li><a href="vaders.js">2012 JavaScript source</a>
+				</li>
+			</div>
+			<div id=assets>
+				<img src="images/you.png" id=img-you>
+				<img src="images/vad.png" id=img-vad>
+				<img src="images/ym.png" id=img-ym>
+				<img src="images/vm.png" id=img-vm>
+			</div>
 		</div>
+		
 		<script src=vaders.js></script>
 	</body>
 </html>

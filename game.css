@@ -1,0 +1,22 @@
+html, body {
+	background: #efefef;
+	color: black;
+	
+	font-family: "Helvetica", sans-serif;
+}
+
+#column {
+	width: 640px;
+	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#game-status {
+	background-color: black;
+	color: #c0c0c0;
+}
+
+#assets {
+	display: none;
+}
