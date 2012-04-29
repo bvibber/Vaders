@@ -82,7 +82,7 @@ function initLevel() {
 }
 
 function drawFrame() {
-	if (status.theend) {
+	if (state.theend) {
 		theend();
 		return;
 	}
@@ -132,9 +132,6 @@ function drawFrame() {
 			}
 			if (vs[q].y == 25) {
 				lives -= 1;
-				if (lives <= 0) {
-					state.theend = true;
-				}
 			}
 			putImage(vs[q].y, vs[q].x, vad$);
 			if (vs[q].x - 1 >= x - 1 && vs[q].x + 3 <= x + 3) {
