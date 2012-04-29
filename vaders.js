@@ -26,29 +26,13 @@ var state = {
 	theend: false
 };
 
-function init() {
+function initGame() {
 	lv = 1;
 	score = 0;
 	lives = 3;
+	
 	x = 40;
-	clearScreen();
-	for (q = 0; q < maxMissiles; q++) {
-		ym[q] = {
-			x: 0,
-			y: 0
-		};
-		vm[q] = {
-			x: 0,
-			y: 0
-		};
-	}
-	for (q = 0; q < maxVaders; q++) {
-		vs[q] = {
-			x: 20 + (q * 5),
-			y: 2 + Math.floor(lv / 3),
-			dx: 1
-		};
-	}
+	initLevel();
 
 	document.addEventListener('keydown', function(event) {
 		if (event.keyCode == 37) {
@@ -74,12 +58,33 @@ function init() {
 	});
 	
 	status.interval = window.setInterval(drawFrame, 1000 / 20);
-	//drawFrame();
+}
+
+function initLevel() {
+	clearScreen();
+	for (q = 0; q < maxMissiles; q++) {
+		ym[q] = {
+			x: 0,
+			y: 0
+		};
+		vm[q] = {
+			x: 0,
+			y: 0
+		};
+	}
+	for (q = 0; q < maxVaders; q++) {
+		vs[q] = {
+			x: 20 + (q * 5),
+			y: 2 + Math.floor(lv / 3),
+			dx: 1
+		};
+	}
 }
 
 function drawFrame() {
 	if (status.theend) {
 		theend();
+		return;
 	}
 
 	status.textContent =  "BLV  Level" + lv + "  Score:" + score + "  Lives:" + lives;
@@ -127,14 +132,14 @@ function drawFrame() {
 			}
 			if (vs[q].y == 25) {
 				lives -= 1;
-				if (lives == 0) {
+				if (lives <= 0) {
 					state.theend = true;
 				}
 			}
 			putImage(vs[q].y, vs[q].x, vad$);
 			if (vs[q].x - 1 >= x - 1 && vs[q].x + 3 <= x + 3) {
 				m = -1;
-				for (var qq = 0; q <= 2; q++) {
+				for (var qq = 0; qq < maxMissiles; qq++) {
 					if (vm[qq].x == 0) {
 						m = qq;
 					}
@@ -185,8 +190,9 @@ function drawFrame() {
 	if (qwerty == 0) {
 		lv += 1;
 		score += 50;
+		initLevel();
 	}
-	if (lives == 0) {
+	if (lives <= 0) {
 		state.theend = true;
 	}
 }
@@ -194,6 +200,7 @@ function drawFrame() {
 function theend() {
 	status.textContent = " Sorry, but the 'Vaders won.";
 	window.clearInterval(status.interval);
+	status.interval = null;
 }
 
 function clearScreen() {
@@ -211,5 +218,5 @@ function clearAt(row, col, len) {
 }
 
 window.addEventListener('load', function() {
-	init();
+	initGame();
 });
